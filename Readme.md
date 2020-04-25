@@ -4,7 +4,7 @@
 * [References](#References)
 * [Requirements](#Requirements)
 * [Running the Kernel](#Running-the-Kernel)
-* [How does it boot](#How-does-it-boot-?)
+* [How does it boot](#How-does-it-boot)
 
 
 ### References
@@ -41,5 +41,5 @@ make clean
 
 This should start the qemu emulator and you should be able to see, "Changed from 32 bit to 64 bit! Boot is now complete ..." on the qemu emulator terminal. You can change the letter 'C' to something else in kernel.c and re-compile it again and run. This time the 'C' in "Changed" will be the new letter you assigned in the C file.
 
-### How does it boot ?
+### How does it boot
 The bootable image has two parts - x86 assembly and C (kernel.c). ```boot.asm``` loads the subsequent sectors which inculde assembly code beyond the BIOS loaded 512 bytes and the C kernel into the memory. After this point, ```boot_main.asm``` is invoked and the execution continues from there. It first switches into 32 bit protected mode and then into 64 bit long mode and invokes C kernel. The C kernel then changes the first letter of the video memory which is used to print to the screen
