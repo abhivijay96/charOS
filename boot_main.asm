@@ -8,7 +8,7 @@ mov sp, bp
 mov bx, IN_REAL_MODE_MESSAGE
 call print_16
 
-call switch_to_pm   ; this function call never returns
+call switch_to_pm   ; this function call switches to 32 bit protected mode
 jmp $
 
 %include "./utilities/print_16.asm"
@@ -25,7 +25,8 @@ jmp $
 
 [bits 32]
 BEGIN_PM:
-; Move to 64 bit and then call KERNEL_OFFSET
+    ; in 32 bit protected mode now, but need to move to 64 bit long mode
+    ; Move to 64 bit and then call KERNEL_OFFSET
     ; call check_multiboot    ; disable this if you are testing in qemu
     call check_cpuid
     call check_long_mode
@@ -34,7 +35,7 @@ BEGIN_PM:
     call print_32
 
     call setup_page_tables
-    call enable_paging
+    call enable_paging  ; after paging enabled, the CPU is in 64 bit mode
 
     lgdt [gdt64.pointer]
     jmp gdt64.code:start_os_64
