@@ -4,7 +4,7 @@
 * [References](#References)
 * [Requirements](#Requirements)
 * [Running the Kernel](#Running-the-Kernel)
-* [How does it boot](#How-does-it-boot)
+* [How does it boot](#How-does-it-boot-?)
 
 
 ### References
